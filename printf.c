@@ -50,10 +50,12 @@ int _printf(const char *format, ...)
 					{
 						putchar('-');
 						dv = -dv;
+						count++;
 					}
 					if (dv == 0)
 					{
-						putchar(0);
+						putchar('0');
+						count++;
 						break;
 					}
 					nd = 0, temp = dv;
