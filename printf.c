@@ -44,7 +44,7 @@ int _printf(const char *format, ...)
 					if (dv == INT_MIN)
 					{
 						return (INT_MIN);
-						break;
+						count += 11;
 					}
 					if (dv < 0)
 					{
