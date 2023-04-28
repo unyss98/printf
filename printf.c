@@ -43,7 +43,8 @@ int _printf(const char *format, ...)
 					dv = va_arg(list, int);
 					if (dv == INT_MIN)
 					{
-						_printf("%d", INT_MIN);
+						return (INT_MIN);
+						break;
 					}
 					if (dv < 0)
 					{
