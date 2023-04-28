@@ -15,8 +15,8 @@
 int _printf(const char *format, ...)
 {
 	va_list list;
-	int i, j, cv, /*dv, k, temp, dd, nd, l, m, */count = 0;
-	/*unsigned int ov, uv, xv, Xv;*/
+	int i, j, cv, dv, k, temp, dd, nd, l, m, count = 0;
+	unsigned int ov, uv, xv, Xv, bv;
 	char *sv;
 
 	va_start(list, format);
@@ -38,7 +38,7 @@ int _printf(const char *format, ...)
 					for (j = 0; sv[j] != '\0'; j++)
 						putchar(sv[j]), count++;
 					break;
-				/*case 'd':
+				case 'd':
 				case 'i':
 					dv = va_arg(list, int);
 					if (dv == INT_MIN)
@@ -122,6 +122,27 @@ int _printf(const char *format, ...)
                                                 count++;
                                         }
                                         break;
+				case 'b':
+                                        bv = va_arg(list, unsigned int);
+                                        if (bv == 0)
+                                        {
+                                                putchar('0');
+                                                count++;
+                                                break;
+                                        }
+                                        nd = 0, temp = bv;
+                                        while (temp != 0)
+                                                temp /= 2, nd++;
+                                        for (k = nd - 1; k >= 0; k--)
+                                        {
+                                                l = 1;
+                                                for (m = 0; m < k; m++)
+                                                        l *= 2;
+                                                dd = bv / l % 2;
+                                                putchar('0' + dd);
+                                                count++;
+                                        }
+                                        break;
 				case 'x':
                                         xv = va_arg(list, unsigned int);
                                         if (xv == 0)
@@ -163,7 +184,7 @@ int _printf(const char *format, ...)
                                                 putchar((dd < 10) ? ('0' + dd) : ('X' + dd));
                                                 count++;
                                         }
-                                        break; */
+                                        break;
 				case '%':
 					putchar('%'), count++;
 					break;
