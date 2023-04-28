@@ -34,12 +34,11 @@ int _printf(const char *format, ...)
 				case 's':
 					sv = va_arg(list, char*);
 					if (sv == NULL)
-						putchar('\0');
+						putchar('\0'), count += 6;
 					for (j = 0; sv[j] != '\0'; j++)
 						putchar(sv[j]), count++;
 					break;
-				/**
-				case 'd':
+				/*case 'd':
 				case 'i':
 					dv = va_arg(list, int);
 					if (dv == INT_MIN)
@@ -164,8 +163,7 @@ int _printf(const char *format, ...)
                                                 putchar((dd < 10) ? ('0' + dd) : ('X' + dd));
                                                 count++;
                                         }
-                                        break;
-					*/
+                                        break; */
 				case '%':
 					putchar('%'), count++;
 					break;
