@@ -49,8 +49,9 @@ int _printf(const char *format, ...)
 					}
 					if (dv == INT_MAX)
 					{
-						fputs("2147483648", stdout);
+						fputs("2147483647", stdout);
 						return (count += 10);
+						break;
 					}
 					if (dv < 0)
 					{
