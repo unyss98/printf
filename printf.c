@@ -43,7 +43,7 @@ int _printf(const char *format, ...)
 					dv = va_arg(list, int);
 					if (dv == INT_MIN)
 					{
-						return (INT_MIN);
+						fputs("-2147483648", stdout);
 						return (count += 11);
 						break;
 					}
