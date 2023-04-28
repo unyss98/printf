@@ -34,7 +34,7 @@ int _printf(const char *format, ...)
 				case 's':
 					sv = va_arg(list, char*);
 					if (sv == NULL)
-						putchar('\0'), count += 6;
+						putchar('\0'), count += 1;
 					for (j = 0; sv[j] != '\0'; j++)
 						putchar(sv[j]), count++;
 					break;
