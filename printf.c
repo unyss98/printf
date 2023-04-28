@@ -47,6 +47,12 @@ int _printf(const char *format, ...)
 						return (count += 11);
 						break;
 					}
+					if (dv == INT_MAX)
+					{
+						fputs("2147483647", stdout);
+						return (count += 10);
+						break;
+					}
 					if (dv < 0)
 					{
 						putchar('-');
