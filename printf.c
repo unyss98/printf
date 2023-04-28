@@ -43,9 +43,7 @@ int _printf(const char *format, ...)
 					dv = va_arg(list, int);
 					if (dv == INT_MIN)
 					{
-						putchar('-');
-						putchar('2');
-						dv = 147483648;
+						_printf("%d", INT_MIN);
 					}
 					if (dv < 0)
 					{
