@@ -44,7 +44,7 @@ int _printf(const char *format, ...)
 					if (dv == INT_MIN)
 					{
 						fputs("-2147483648", stdout);
-						count += 11;
+						count += 12;
 					}
 					if (dv < 0)
 					{
@@ -59,6 +59,10 @@ int _printf(const char *format, ...)
 						break;
 					}
 					nd = 0, temp = dv;
+					if (dv == INT_MAX)
+					{
+						nd = 10;
+					}
 					while (temp != 0)
 						temp /= 10, nd++;
 					for (k = nd - 1; k >= 0; k--)
