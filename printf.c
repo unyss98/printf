@@ -15,7 +15,7 @@
 int _printf(const char *format, ...)
 {
 	va_list list;
-	int i, j, cv, count = 0;
+	int i, j, k, cv, dv, temp, dd, nd = 0, l, m, count = 0;
 	char *sv;
 
 	va_start(list, format);
@@ -36,6 +36,38 @@ int _printf(const char *format, ...)
 						exit(1);
 					for (j = 0; sv[j] != '\0'; j++)
 						putchar(sv[j]), count++;
+					break;
+				case 'i':
+				case 'd':
+					dv = va_arg(list, int);
+					if (dv < 0)
+					{
+						putchar('-');
+						dv = -dv;
+					}
+					if (dv == 0)
+					{
+						putchar('0');
+						break;
+					}
+					if (dv == INT_MIN)
+					{
+						putchar('2');
+						dv = 147483648;
+						nd--;
+					}
+					temp = dv;
+					while (temp > 0)
+						temp /= 10, nd++;
+					for (k = nd - 1; k >= 0; k--)
+					{
+						l = 1;
+						for (m = 0; m < k; m++)
+							l *= 10;
+						dd = dv / 1 % 10;
+						putchar('0' + dd);
+						count++;
+					}
 					break;
 				case '%':
 					putchar('%'), count++;
