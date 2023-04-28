@@ -37,8 +37,9 @@ int _printf(const char *format, ...)
 					for (j = 0; sv[j] != '\0'; j++)
 						putchar(sv[j]), count++;
 					break;
-				case 'i':
 				case 'd':
+				case 'i':
+				case 'u':
 					dv = va_arg(list, int);
 					if (dv < 0)
 					{
