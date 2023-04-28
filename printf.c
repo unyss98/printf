@@ -15,8 +15,8 @@
 int _printf(const char *format, ...)
 {
 	va_list list;
-	int i, j, k, cv, dv, temp, dd, nd, l, m, count = 0;
-	unsigned int ov, uv, xv, Xv;
+	int i, j, cv, /*dv, k, temp, dd, nd, l, m, */count = 0;
+	/*unsigned int ov, uv, xv, Xv;*/
 	char *sv;
 
 	va_start(list, format);
@@ -34,10 +34,11 @@ int _printf(const char *format, ...)
 				case 's':
 					sv = va_arg(list, char*);
 					if (sv == NULL)
-						exit(1);
+						putchar('\0');
 					for (j = 0; sv[j] != '\0'; j++)
 						putchar(sv[j]), count++;
 					break;
+				/**
 				case 'd':
 				case 'i':
 					dv = va_arg(list, int);
@@ -164,6 +165,7 @@ int _printf(const char *format, ...)
                                                 count++;
                                         }
                                         break;
+					*/
 				case '%':
 					putchar('%'), count++;
 					break;
