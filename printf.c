@@ -65,7 +65,9 @@ int _printf(const char *format, ...)
 					{
 						l = 1;
 						for (m = 0; m < k; m++)
+						{
 							l *= 10;
+						}
 						dd = dv / l % 10;
 						putchar('0' + dd);
 						count++;
