@@ -43,8 +43,9 @@ int _printf(const char *format, ...)
 					dv = va_arg(list, int);
 					if (dv == INT_MIN)
 					{
-						fputs("-2147483648", stdout);
-						count += 11;
+						putchar('-');
+						putchar('2');
+						dv = 147483648;
 					}
 					if (dv < 0)
 					{
