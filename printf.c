@@ -15,7 +15,7 @@
 int _printf(const char *format, ...)
 {
 	va_list list;
-	int i, j, k, cv, dv, temp, dd, nd = 0, l, m, count = 0;
+	int i, j, k, cv, dv, temp, dd, nd, l, m, count = 0;
 	char *sv;
 
 	va_start(list, format);
@@ -57,7 +57,7 @@ int _printf(const char *format, ...)
 						dv = 147483648;
 						nd--;
 					}
-					temp = dv;
+					nd = 0, temp = dv;
 					while (temp > 0)
 						temp /= 10, nd++;
 					for (k = nd - 1; k >= 0; k--)
