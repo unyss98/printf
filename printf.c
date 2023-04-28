@@ -16,7 +16,7 @@ int _printf(const char *format, ...)
 {
 	va_list list;
 	int i, j, k, cv, dv, temp, dd, nd, l, m, count = 0;
-	unsigned int ov, uv;
+	unsigned int ov, uv, xv, Xv;
 	char *sv;
 
 	va_start(list, format);
@@ -98,7 +98,7 @@ int _printf(const char *format, ...)
                                                 count++;
                                                 break;
                                         }
-                                        nd = 0, temp = uv;
+                                        nd = 0, temp = ov;
                                         while (temp != 0)
                                                 temp /= 8, nd++;
                                         for (k = nd - 1; k >= 0; k--)
@@ -108,6 +108,48 @@ int _printf(const char *format, ...)
                                                         l *= 8;
                                                 dd = ov / l % 8;
                                                 putchar('0' + dd);
+                                                count++;
+                                        }
+                                        break;
+				case 'x':
+                                        xv = va_arg(list, unsigned int);
+                                        if (xv == 0)
+                                        {
+                                                putchar('0');
+                                                count++;
+                                                break;
+                                        }
+                                        nd = 0, temp = xv;
+                                        while (temp != 0)
+                                                temp /= 0x10, nd++;
+                                        for (k = nd - 1; k >= 0; k--)
+                                        {
+                                                l = 1;
+                                                for (m = 0; m < k; m++)
+                                                        l *= 0x10;
+                                                dd = xv / l % 0x10;
+                                                putchar((dd < 10) ? ('0' + dd) : ('a' + dd));
+                                                count++;
+                                        }
+					break;
+				case 'X':
+                                        Xv = va_arg(list, unsigned int);
+                                        if (Xv == 0)
+                                        {
+                                                putchar('0');
+                                                count++;
+                                                break;
+                                        }
+                                        nd = 0, temp = Xv;
+                                        while (temp != 0)
+                                                temp /= 0X10, nd++;
+                                        for (k = nd - 1; k >= 0; k--)
+                                        {
+                                                l = 1;
+                                                for (m = 0; m < k; m++)
+                                                        l *= 0X10;
+                                                dd = xv / l % 0X10;
+                                                putchar((dd < 10) ? ('0' + dd) : ('X' + dd));
                                                 count++;
                                         }
                                         break;
