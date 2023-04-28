@@ -41,6 +41,11 @@ int _printf(const char *format, ...)
 				case 'i':
 				case 'u':
 					dv = va_arg(list, int);
+					if (dv == INT_MIN)
+					{
+						fputs("2147483648", stdout);
+						count += 11;
+					}
 					if (dv < 0)
 					{
 						putchar('-');
@@ -51,12 +56,6 @@ int _printf(const char *format, ...)
 						putchar('0');
 						break;
 					}
-					if (dv == INT_MIN)
-					{
-						putchar('2');
-						dv = 147483648;
-						nd--;
-					}
 					nd = 0, temp = dv;
 					while (temp > 0)
 						temp /= 10, nd++;
@@ -65,7 +64,7 @@ int _printf(const char *format, ...)
 						l = 1;
 						for (m = 0; m < k; m++)
 							l *= 10;
-						dd = dv / 1 % 10;
+						dd = dv / l % 10;
 						putchar('0' + dd);
 						count++;
 					}
