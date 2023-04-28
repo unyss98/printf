@@ -53,7 +53,7 @@ int _printf(const char *format, ...)
 					}
 					if (dv == 0)
 					{
-						putchar('0');
+						putchar(0);
 						break;
 					}
 					nd = 0, temp = dv;
