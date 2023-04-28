@@ -16,7 +16,7 @@ int _printf(const char *format, ...)
 {
 	va_list list;
 	int i, j, k, cv, dv, temp, dd, nd, l, m, count = 0;
-	unsigned int uv;
+	unsigned int ov, uv;
 	char *sv;
 
 	va_start(list, format);
@@ -43,7 +43,7 @@ int _printf(const char *format, ...)
 					dv = va_arg(list, int);
 					if (dv == INT_MIN)
 					{
-						fputs("2147483648", stdout);
+						fputs("-2147483648", stdout);
 						count += 11;
 					}
 					if (dv < 0)
@@ -90,6 +90,27 @@ int _printf(const char *format, ...)
 						count++;
 					}
 					break;
+				case 'o':
+                                        ov = va_arg(list, unsigned int);
+                                        if (ov == 0)
+                                        {
+                                                putchar('0');
+                                                count++;
+                                                break;
+                                        }
+                                        nd = 0, temp = uv;
+                                        while (temp != 0)
+                                                temp /= 8, nd++;
+                                        for (k = nd - 1; k >= 0; k--)
+                                        {
+                                                l = 1;
+                                                for (m = 0; m < k; m++)
+                                                        l *= 8;
+                                                dd = ov / l % 8;
+                                                putchar('0' + dd);
+                                                count++;
+                                        }
+                                        break;
 				case '%':
 					putchar('%'), count++;
 					break;
